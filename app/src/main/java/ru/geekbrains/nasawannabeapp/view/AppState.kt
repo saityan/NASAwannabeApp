@@ -1,4 +1,6 @@
-package ru.geekbrains.nasawannabeapp.repository
+package ru.geekbrains.nasawannabeapp.view
+
+import ru.geekbrains.nasawannabeapp.repository.PODServerResponseData
 
 sealed class AppState {
     data class Success(val serverResponseData: PODServerResponseData) : AppState()
