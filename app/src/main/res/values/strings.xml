@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">NASAwannabeApp</string>
-    <string name="photo_of_the_day">photo_of_the_day</string>
+    <string name="app_name">Photo Of The Day</string>
+    <string name="photo_of_the_day">Photo of the day</string>
+    <string name="wiki_helper_text">Search in Wikipedia</string>
+    <string name="favorite">favorite</string>
+    <string name="settings">settings</string>
+    <string name="search">Search</string>
 </resources>
