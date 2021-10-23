@@ -1,5 +1,7 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -47,6 +49,13 @@ class PODFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
         viewModel.sendServerRequest()
+        binding.inputLayout.setEndIconOnClickListener {
+            val intent = Intent (Intent.ACTION_VIEW).apply {
+                data = Uri.parse(
+                    "https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            }
+            startActivity(intent)
+        }
     }
 
     private fun renderData (data: PODdata) {

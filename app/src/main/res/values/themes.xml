@@ -16,7 +16,8 @@
 
     <style name="CustomOutlineBox"
         parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
+        <item name="endIconMode">custom</item>
+        <item name="endIconDrawable">@drawable/ic_wikipedia</item>
     </style>
 
 </resources>
