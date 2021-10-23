@@ -16,12 +16,11 @@ class PODViewModel (
 ) : ViewModel() {
 
     fun getLiveData(): LiveData<PODdata> {
-        sendServerRequest()
         return liveDataToObserve
     }
 
-    private fun sendServerRequest() {
-        liveDataToObserve.value = PODdata.Loading(null)
+    fun sendServerRequest() {
+        liveDataToObserve.value = PODdata.Loading
         val apiKey = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
             PODdata.Error(Throwable("API key parameter is empty"))

@@ -46,6 +46,7 @@ class PODFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLiveData().observe(viewLifecycleOwner, { renderData(it) })
+        viewModel.sendServerRequest()
     }
 
     private fun renderData (data: PODdata) {
@@ -56,7 +57,7 @@ class PODFragment : Fragment() {
                 }
             }
             is PODdata.Error -> { toast(data.error.message) }
-            is PODdata.Loading -> {/*ProgressBar*/}
+            is PODdata.Loading -> { /*TODO "progress bar"*/ }
         }
     }
 
