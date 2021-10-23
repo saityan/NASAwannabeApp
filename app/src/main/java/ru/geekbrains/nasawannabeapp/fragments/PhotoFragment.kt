@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
 import com.google.android.material.snackbar.Snackbar
-import ru.geekbrains.nasawannabeapp.MainActivity
+import ru.geekbrains.nasawannabeapp.view.MainActivity
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
 import ru.geekbrains.nasawannabeapp.view.AppState
