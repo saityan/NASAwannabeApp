@@ -3,27 +3,33 @@ package ru.geekbrains.nasawannabeapp.fragments
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
+import ru.geekbrains.nasawannabeapp.view.MainActivity
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
 
 class PODFragment : Fragment() {
+
+    private lateinit var bottomSheetBehaviour: BottomSheetBehavior<ConstraintLayout>
 
     private var _binding: FragmentPhotoBinding? = null
     private val binding: FragmentPhotoBinding
     get() {
         return _binding!!
     }
+
+    private var isMain = true
 
     companion object{
         fun newInstance(): PODFragment {
@@ -42,6 +48,7 @@ class PODFragment : Fragment() {
     ): View {
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         _binding = FragmentPhotoBinding.inflate(inflater)
+        setActionBar()
         return binding.root
     }
 
@@ -55,6 +62,64 @@ class PODFragment : Fragment() {
                     "https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             }
             startActivity(intent)
+        }
+
+        bottomSheetBehaviour = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
+        bottomSheetBehaviour.state = BottomSheetBehavior.STATE_HIDDEN
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_bottom_bar, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.app_bar_fav -> {
+                Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+            }
+            R.id.app_bar_settings -> {
+                Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show()
+            }
+            android.R.id.home -> {
+                BottomNavigationDrawerFragment.newInstance()
+                    .show(requireActivity().supportFragmentManager, "")
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setActionBar() {
+        (context as MainActivity).setSupportActionBar(binding.bottomAppBar)
+        setHasOptionsMenu(true)
+        binding.fab.setOnClickListener {
+            if (isMain) {
+                isMain = false
+                binding.bottomAppBar.navigationIcon = null
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_back_fab
+                    )
+                )
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+            } else {
+                isMain = true
+                binding.bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_hamburger_menu_bottom_bar
+                    )
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                binding.fab.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        requireContext(),
+                        R.drawable.ic_plus_fab
+                    )
+                )
+                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
+            }
         }
     }
 
@@ -75,5 +140,26 @@ class PODFragment : Fragment() {
             setGravity(Gravity.BOTTOM, 0, 250)
             show()
         }
+    }
+
+    private fun bottomSheetCallback() {
+        bottomSheetBehaviour.addBottomSheetCallback(
+            object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    when (newState) {
+                        BottomSheetBehavior.STATE_DRAGGING -> TODO("")
+                        BottomSheetBehavior.STATE_COLLAPSED -> TODO("")
+                        BottomSheetBehavior.STATE_EXPANDED -> TODO("")
+                        BottomSheetBehavior.STATE_HALF_EXPANDED -> TODO("")
+                        BottomSheetBehavior.STATE_HIDDEN -> TODO("")
+                        BottomSheetBehavior.STATE_SETTLING -> TODO("")
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                    TODO("Not yet implemented")
+                }
+            }
+        )
     }
 }
