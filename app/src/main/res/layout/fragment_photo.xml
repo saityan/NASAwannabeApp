@@ -24,6 +24,7 @@
                 style="@style/CustomOutlineBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 android:hint="@string/search"
                 app:endIconCheckable="true"
                 app:endIconDrawable="@drawable/ic_wikipedia"
