@@ -65,7 +65,8 @@ class PODFragment : Fragment() {
         }
 
         bottomSheetBehaviour = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
-        bottomSheetBehaviour.state = BottomSheetBehavior.STATE_HIDDEN
+        bottomSheetBehaviour.isHideable = false
+        bottomSheetBehaviour.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -134,6 +135,8 @@ class PODFragment : Fragment() {
                 binding.imageView.load(data.serverResponseData.url) {
                     error(R.drawable.ic_load_error_vector)
                 }
+                binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
+                binding.includeLayout.bottomSheetDescription.text = data.serverResponseData.explanation
             }
             is PODdata.Error -> { toast(data.error.message) }
             is PODdata.Loading -> { /*TODO "progress bar"*/ }
@@ -145,6 +148,11 @@ class PODFragment : Fragment() {
             setGravity(Gravity.BOTTOM, 0, 250)
             show()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun bottomSheetCallback() {

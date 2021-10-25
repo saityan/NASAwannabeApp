@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#f6f6fa"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="50dp"
+    app:behavior_peekHeight="200dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
@@ -33,7 +33,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_line"
-        tools:text="Two Clusters and a Comet" />
+        android:text=""
+        tools:text="Sample text" />
 
     <TextView
         android:id="@+id/bottom_sheet_description"
@@ -44,5 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
+        android:text=""
         tools:text="sample text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
