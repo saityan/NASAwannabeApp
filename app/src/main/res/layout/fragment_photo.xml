@@ -25,11 +25,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
-                android:hint="@string/search"
+                android:hint="@string/wiki_helper_text"
                 app:endIconCheckable="true"
                 app:endIconDrawable="@drawable/ic_wikipedia"
                 app:endIconMode="custom"
-                app:helperText="@string/wiki_helper_text"
+                app:helperText="@string/search"
                 app:layout_constraintBottom_toTopOf="@+id/image_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
