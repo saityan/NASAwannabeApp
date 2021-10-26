@@ -83,7 +83,7 @@ class PODFragment : Fragment() {
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.container, ChipsFragment.newInstance())
+                    .replace(R.id.container, SettingsFragment.newInstance())
                     .addToBackStack("")
                     .commit()
             }
