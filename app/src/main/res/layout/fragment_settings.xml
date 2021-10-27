@@ -4,10 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/includeChips"
-        layout="@layout/chips_layout" />
-
     <LinearLayout
         android:id="@+id/secondRow"
         android:layout_width="match_parent"
