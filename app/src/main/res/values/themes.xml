@@ -17,8 +17,6 @@
         <item name="textInputStyle">@style/CustomOutlineBox</item>
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
-        <item name="chipStyle">@style/ChipTextAppearance.Base</item>
-        <item name="bottomNavigationStyle">@style/CustomBottomNavigationStyle</item>
         <item name="android:colorBackground">@color/customColorThird</item>
     </style>
 
@@ -34,20 +32,6 @@
         <item name="endIconMode">custom</item>
         <item name="endIconDrawable">@drawable/ic_wikipedia</item>
     </style>
-
-    <style name="CustomBottomNavigationStyle" parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
-
-    </style>
-    <style name="ChipStyle.Base" parent="@style/Widget.MaterialComponents.Chip.Action">
-        <item name="android:textAppearance">@style/ChipTextAppearance.Base</item>
-        <item name="chipBackgroundColor">@android:color/holo_blue_light</item>
-    </style>
-
-    <style name="ChipTextAppearance.Base" parent="TextAppearance.MaterialComponents.Chip">
-        <item name="fontFamily">@font/aguafina_script</item>
-        <item name="android:fontFamily">@font/aguafina_script</item>
-    </style>
-
     <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">10dp</item>
