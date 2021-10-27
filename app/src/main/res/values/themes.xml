@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.NASAwannabeApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.NASAwannabeApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorSurface">#b2ebf2</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,10 +14,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="textInputStyle">@style/CustomOutlineBox</item>
     </style>
 
     <style name="CustomOutlineBox"
         parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">20</item>
+        <item name="counterOverflowTextColor">@color/black</item>
         <item name="endIconMode">custom</item>
         <item name="endIconDrawable">@drawable/ic_wikipedia</item>
     </style>

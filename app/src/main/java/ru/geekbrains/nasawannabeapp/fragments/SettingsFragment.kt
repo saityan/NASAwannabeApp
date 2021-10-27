@@ -29,11 +29,8 @@ class SettingsFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*binding.includeChips.chipGroup.setOnCheckedChangeListener{ childGroup, position ->
-            Toast.makeText(context,"Click $position",Toast.LENGTH_SHORT).show()
-        }*/
-        binding.includeChips.chipWithClose.setOnCloseIconClickListener {
-            Toast.makeText(context,"Click on chipWithClose",Toast.LENGTH_SHORT).show()
+        binding.tabsSnake.getTabAt(2)?.let {
+            Toast.makeText(context,"top tab",Toast.LENGTH_SHORT).show()
         }
     }
 
