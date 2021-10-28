@@ -64,7 +64,6 @@
         android:layout_gravity="bottom"
         app:hideOnScroll="true"
         app:layout_scrollFlags="scroll|enterAlways"
-        app:backgroundTint="@color/colorPrimary"
         app:fabAlignmentMode="center"
         app:fabCradleMargin="10dp"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
