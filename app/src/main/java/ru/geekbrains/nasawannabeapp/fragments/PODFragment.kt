@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -86,6 +87,16 @@ class PODFragment : Fragment() {
                     .replace(R.id.container, SettingsFragment.newInstance())
                     .addToBackStack("")
                     .commit()
+            }
+            R.id.app_bar_theme -> {
+                val preferences = requireActivity().getSharedPreferences(
+                        R.string.app_name.toString(), AppCompatActivity.MODE_PRIVATE
+                    )
+                when (preferences.getInt("customThemeID", 0)) {
+                    0 -> preferences.edit().putInt("customThemeID", 1).apply()
+                    1 -> preferences.edit().putInt("customThemeID", 0).apply()
+                }
+                activity?.recreate()
             }
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()

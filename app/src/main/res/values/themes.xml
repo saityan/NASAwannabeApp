@@ -20,8 +20,8 @@
         <item name="android:colorBackground">@color/customColorThird</item>
     </style>
 
-    <style name="Theme.NASAwannabeApp.Splash">
-        <item name="android:windowBackground">@drawable/splash_background</item>
+    <style name="Theme.NASAwannabeApp.Auxiliary">
+        <item name="android:colorBackground">@color/customColorSecond</item>
     </style>
 
     <style name="CustomOutlineBox"
