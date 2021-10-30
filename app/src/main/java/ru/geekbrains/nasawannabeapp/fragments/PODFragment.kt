@@ -170,25 +170,4 @@ class PODFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-    private fun bottomSheetCallback() {
-        bottomSheetBehaviour.addBottomSheetCallback(
-            object : BottomSheetBehavior.BottomSheetCallback() {
-                override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    when (newState) {
-                        BottomSheetBehavior.STATE_DRAGGING -> TODO("")
-                        BottomSheetBehavior.STATE_COLLAPSED -> TODO("")
-                        BottomSheetBehavior.STATE_EXPANDED -> TODO("")
-                        BottomSheetBehavior.STATE_HALF_EXPANDED -> TODO("")
-                        BottomSheetBehavior.STATE_HIDDEN -> TODO("")
-                        BottomSheetBehavior.STATE_SETTLING -> TODO("")
-                    }
-                }
-
-                override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    TODO("Not yet implemented")
-                }
-            }
-        )
-    }
 }
