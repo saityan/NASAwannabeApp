@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
 import ru.geekbrains.nasawannabeapp.view.ApiActivity
+import ru.geekbrains.nasawannabeapp.view.ApiBottomActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
@@ -78,9 +79,11 @@ class PODFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.app_bar_fav -> {
-                Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+            R.id.action_api_activity -> {
                 startActivity(Intent(context, ApiActivity::class.java))
+            }
+            R.id.action_api_bottom_activity -> {
+                startActivity(Intent(context, ApiBottomActivity::class.java))
             }
             R.id.app_bar_settings -> {
                 requireActivity()

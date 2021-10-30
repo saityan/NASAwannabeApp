@@ -18,6 +18,7 @@
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
         <item name="android:colorBackground">@color/customColorThird</item>
+        <item name="bottomNavigationStyle">@style/customBottomNavigationStyle</item>
     </style>
 
     <style name="Theme.NASAwannabeApp.Auxiliary">
@@ -26,6 +27,11 @@
         <item name="colorPrimary">@color/customColorFirst</item>
         <item name="colorPrimaryDark">@color/customColorFirst</item>
         <item name="android:colorBackground">@color/customColorSecond</item>
+    </style>
+
+    <style name="customBottomNavigationStyle"
+        parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+
     </style>
 
     <style name="CustomOutlineBox"

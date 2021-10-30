@@ -35,7 +35,7 @@ class SettingsFragment:Fragment() {
         }
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.app_bar_fav -> {
+                R.id.action_api_activity -> {
                     Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
                 }
                 R.id.app_bar_settings -> {
