@@ -17,17 +17,24 @@
             android:name=".view.ApiActivity"
             android:exported="true"
             android:theme="@style/Theme.NASAwannabeApp">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <activity
+            android:name=".view.ApiBottomActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NASAwannabeApp">
+        </activity>
+
 
         <activity
             android:name=".view.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NASAwannabeApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>

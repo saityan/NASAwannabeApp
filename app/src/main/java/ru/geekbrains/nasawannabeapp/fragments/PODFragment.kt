@@ -16,6 +16,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
+import ru.geekbrains.nasawannabeapp.view.ApiActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
@@ -79,6 +80,7 @@ class PODFragment : Fragment() {
         when(item.itemId) {
             R.id.app_bar_fav -> {
                 Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(context, ApiActivity::class.java))
             }
             R.id.app_bar_settings -> {
                 requireActivity()

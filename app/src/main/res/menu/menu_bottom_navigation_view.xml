@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/actionEarth"
+        android:icon="@drawable/ic_earth"
+        app:tooltipText=""
+        android:title="Earth"/>
+    <item
+        android:id="@+id/actionMars"
+        android:icon="@drawable/ic_mars"
+        app:tooltipText=""
+        android:title="Mars"/>
+    <item
+        android:id="@+id/actionSystem"
+        android:icon="@drawable/ic_system"
+        app:tooltipText=""
+        android:title="System"/>
+</menu>
