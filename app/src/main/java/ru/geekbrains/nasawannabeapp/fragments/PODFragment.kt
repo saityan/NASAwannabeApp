@@ -16,6 +16,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
+import ru.geekbrains.nasawannabeapp.utils.*
 import ru.geekbrains.nasawannabeapp.view.ApiActivity
 import ru.geekbrains.nasawannabeapp.view.ApiBottomActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
@@ -97,9 +98,9 @@ class PODFragment : Fragment() {
                 val preferences = requireActivity().getSharedPreferences(
                         R.string.app_name.toString(), AppCompatActivity.MODE_PRIVATE
                     )
-                when (preferences.getInt("customThemeID", 0)) {
-                    0 -> preferences.edit().putInt("customThemeID", 1).apply()
-                    1 -> preferences.edit().putInt("customThemeID", 0).apply()
+                when (preferences.getInt("customThemeID", EARTH)) {
+                    EARTH -> preferences.edit().putInt("customThemeID", MARS).apply()
+                    MARS -> preferences.edit().putInt("customThemeID", EARTH).apply()
                 }
                 activity?.recreate()
             }
