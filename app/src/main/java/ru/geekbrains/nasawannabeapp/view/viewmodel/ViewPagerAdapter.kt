@@ -26,4 +26,13 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager)
             else -> fragments[EARTH]
         }
     }
+
+    override fun getPageTitle(position: Int): String {
+        return when(position) {
+            0 -> "EARTH"
+            1 -> "MARS"
+            2 -> "SYSTEM"
+            else -> "EARTH"
+        }
+    }
 }
