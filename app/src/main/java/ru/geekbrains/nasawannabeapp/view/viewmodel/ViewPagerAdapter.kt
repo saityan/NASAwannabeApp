@@ -6,10 +6,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import ru.geekbrains.nasawannabeapp.fragments.EarthFragment
 import ru.geekbrains.nasawannabeapp.fragments.MarsFragment
 import ru.geekbrains.nasawannabeapp.fragments.SystemFragment
-
-private const val EARTH = 0
-private const val MARS = 1
-private const val SYSTEM = 2
+import ru.geekbrains.nasawannabeapp.utils.*
 
 class ViewPagerAdapter(private val fragmentManager: FragmentManager)
     : FragmentStatePagerAdapter(fragmentManager) {
@@ -27,12 +24,5 @@ class ViewPagerAdapter(private val fragmentManager: FragmentManager)
         }
     }
 
-    override fun getPageTitle(position: Int): String {
-        return when(position) {
-            0 -> "EARTH"
-            1 -> "MARS"
-            2 -> "SYSTEM"
-            else -> "EARTH"
-        }
-    }
+    override fun getPageTitle(position: Int): String? = null
 }
