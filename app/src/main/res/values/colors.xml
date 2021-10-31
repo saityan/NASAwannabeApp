@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="color_gray">#808080</color>
+
     <color name="colorPrimary">#00574B</color>
     <color name="colorPrimaryDark">#003931</color>
     <color name="colorPrimaryVariant">#1BCCB3</color>
@@ -15,10 +17,20 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorAccentSecondary">#66D81B60</color>
     <color name="colorSurface">#008577</color>008577
-    <color name="color_gray">#808080</color>
     <color name="customColorFirst">#ff4081</color>
     <color name="customColorSecond">#C4D2DF</color>
-    <color name="customColorThird">#E8D7D2</color>
+    <color name="customColorBackgroundPrimary">#E8D7D2</color>
+
+    <color name="colorPrimaryAuxiliary">#8D1D51</color>
+    <color name="colorPrimaryDarkAuxiliary">#6C173E</color>
+    <color name="colorPrimaryVariantAuxiliary">#B32467</color>
+    <color name="colorOnPrimaryAuxiliary">#FFF496</color>
+    <color name="colorOnSecondaryAuxiliary">#7DD8E4</color>
+    <color name="colorAccentAuxiliary">#D81B60</color>
+    <color name="colorSurfaceAuxiliary">#DFC772</color>008577
+    <color name="customColorAuxiliary">#ff4081</color>
+    <color name="customColorBackgroundPrimaryAuxiliary">#DCE8D2</color>
+
     <color name="textLightPrimary">#FFFFFF</color>
     <color name="textLightSecondary">#B2FFFFFF</color>
     <color name="textLightDisabled">#80FFFFFF</color>
