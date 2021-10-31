@@ -3,13 +3,13 @@
     <style name="Theme.NASAwannabeApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="colorSurface">@color/colorSurface</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/customColorFirst</item>
+        <item name="colorSecondaryVariant">@color/colorSurface</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorSecondaryVariant</item>
@@ -17,15 +17,26 @@
         <item name="textInputStyle">@style/CustomOutlineBox</item>
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
-        <item name="android:colorBackground">@color/customColorThird</item>
+        <item name="android:colorBackground">@color/customColorBackgroundPrimary</item>
+        <item name="bottomNavigationStyle">@style/customBottomNavigationStyle</item>
     </style>
 
-    <style name="Theme.NASAwannabeApp.Auxiliary">
-        <item name="android:statusBarColor" tools:targetApi="l">@color/customColorFirst</item>
-        <item name="colorSurface">@color/customColorFirst</item>
-        <item name="colorPrimary">@color/customColorFirst</item>
-        <item name="colorPrimaryDark">@color/customColorFirst</item>
-        <item name="android:colorBackground">@color/customColorSecond</item>
+    <style name="Theme.NASAwannabeApp.Auxiliary" parent="Theme.NASAwannabeApp">
+        <item name="colorPrimary">@color/colorPrimaryAuxiliary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkAuxiliary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariantAuxiliary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryAuxiliary</item>
+        <item name="colorSecondary">@color/customColorAuxiliary</item>
+        <item name="colorAccent">@color/colorAccentAuxiliary</item>
+        <item name="colorSurface">@color/colorSurfaceAuxiliary</item>
+        <item name="colorSecondaryVariant">@color/colorSurfaceAuxiliary</item>
+        <item name="android:colorBackground">@color/customColorBackgroundPrimaryAuxiliary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryAuxiliary</item>
+    </style>
+
+    <style name="customBottomNavigationStyle"
+        parent="@style/Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+
     </style>
 
     <style name="CustomOutlineBox"

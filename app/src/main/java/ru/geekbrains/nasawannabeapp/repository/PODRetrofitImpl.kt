@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
@@ -12,16 +13,16 @@ class PODRetrofitImpl {
 
     private val baseUrl = "https://api.nasa.gov/"
 
-    fun getRetrofitImpl(): PODAPI {
-        val podRetrofit = Retrofit.Builder()
+    private val api by lazy {
+        Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory
                 .create(GsonBuilder()
-                .setLenient()
-                .create()))
+                    .setLenient()
+                    .create()))
             .client(createOkHttpClient(PODInterceptor()))
             .build()
-        return podRetrofit.create(PODAPI::class.java)
+            .create(RetrofitAPI::class.java)
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
@@ -29,6 +30,17 @@ class PODRetrofitImpl {
         httpClient.addInterceptor(interceptor)
         httpClient.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         return httpClient.build()
+    }
+
+    fun getPictureOfTheDay(apiKey: String, podCallback: Callback<PODServerResponseData>) {
+        api.getPictureOfTheDay(apiKey).enqueue(podCallback)
+    }
+    fun getSolarFlareToday(
+        apiKey: String,
+        podCallback: Callback<List<SolarFlareResponseData>>,
+        startDate: String = "2021-09-07"
+    ) {
+        api.getSolarFlareToday(apiKey, startDate).enqueue(podCallback)
     }
 
     inner class PODInterceptor : Interceptor {

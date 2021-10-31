@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="?android:colorBackground"
     app:behavior_hideable="true"
-    app:behavior_peekHeight="200dp"
+    app:behavior_peekHeight="250dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <View
@@ -34,6 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_line"
         android:text=""
+        android:textAlignment="center"
         android:fontFamily="@font/goblin"
         android:textSize="18sp"
         tools:text="Sample text" />
@@ -50,6 +51,6 @@
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
         android:text=""
         android:fontFamily="@font/amarante"
-        android:textSize="18sp"
+        android:textSize="16sp"
         tools:text="sample text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

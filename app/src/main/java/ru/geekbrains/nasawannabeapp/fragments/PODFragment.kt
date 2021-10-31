@@ -16,6 +16,9 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
+import ru.geekbrains.nasawannabeapp.utils.*
+import ru.geekbrains.nasawannabeapp.view.ApiActivity
+import ru.geekbrains.nasawannabeapp.view.ApiBottomActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
@@ -77,8 +80,11 @@ class PODFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.app_bar_fav -> {
-                Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+            R.id.action_api_activity -> {
+                startActivity(Intent(context, ApiActivity::class.java))
+            }
+            R.id.action_api_bottom_activity -> {
+                startActivity(Intent(context, ApiBottomActivity::class.java))
             }
             R.id.app_bar_settings -> {
                 requireActivity()
@@ -92,9 +98,9 @@ class PODFragment : Fragment() {
                 val preferences = requireActivity().getSharedPreferences(
                         R.string.app_name.toString(), AppCompatActivity.MODE_PRIVATE
                     )
-                when (preferences.getInt("customThemeID", 0)) {
-                    0 -> preferences.edit().putInt("customThemeID", 1).apply()
-                    1 -> preferences.edit().putInt("customThemeID", 0).apply()
+                when (preferences.getInt("customThemeID", EARTH)) {
+                    EARTH -> preferences.edit().putInt("customThemeID", MARS).apply()
+                    MARS -> preferences.edit().putInt("customThemeID", EARTH).apply()
                 }
                 activity?.recreate()
             }
@@ -164,26 +170,5 @@ class PODFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun bottomSheetCallback() {
-        bottomSheetBehaviour.addBottomSheetCallback(
-            object : BottomSheetBehavior.BottomSheetCallback() {
-                override fun onStateChanged(bottomSheet: View, newState: Int) {
-                    when (newState) {
-                        BottomSheetBehavior.STATE_DRAGGING -> TODO("")
-                        BottomSheetBehavior.STATE_COLLAPSED -> TODO("")
-                        BottomSheetBehavior.STATE_EXPANDED -> TODO("")
-                        BottomSheetBehavior.STATE_HALF_EXPANDED -> TODO("")
-                        BottomSheetBehavior.STATE_HIDDEN -> TODO("")
-                        BottomSheetBehavior.STATE_SETTLING -> TODO("")
-                    }
-                }
-
-                override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    TODO("Not yet implemented")
-                }
-            }
-        )
     }
 }

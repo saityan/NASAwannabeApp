@@ -12,6 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NASAwannabeApp"
         android:fullBackupContent="true">
+
+        <activity
+            android:name=".view.ApiActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NASAwannabeApp">
+        </activity>
+
+        <activity
+            android:name=".view.ApiBottomActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NASAwannabeApp">
+        </activity>
+
+
         <activity
             android:name=".view.MainActivity"
             android:exported="true"
@@ -22,6 +36,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+    </application>
 </manifest>
