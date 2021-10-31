@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 
-class PODRetrofitImpl {
+class RetrofitImpl {
 
     private val baseUrl = "https://api.nasa.gov/"
 
@@ -35,6 +35,7 @@ class PODRetrofitImpl {
     fun getPictureOfTheDay(apiKey: String, podCallback: Callback<PODServerResponseData>) {
         api.getPictureOfTheDay(apiKey).enqueue(podCallback)
     }
+
     fun getSolarFlareToday(
         apiKey: String,
         podCallback: Callback<List<SolarFlareResponseData>>,

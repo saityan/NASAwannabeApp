@@ -1,48 +1,44 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
-import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
-import ru.geekbrains.nasawannabeapp.utils.*
+import ru.geekbrains.nasawannabeapp.databinding.FragmentSolarFlareBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 import ru.geekbrains.nasawannabeapp.view.ApiActivity
 import ru.geekbrains.nasawannabeapp.view.ApiBottomActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
-import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
-import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
+import ru.geekbrains.nasawannabeapp.view.viewmodel.SolarFlareData
+import ru.geekbrains.nasawannabeapp.view.viewmodel.SolarFlareViewModel
 
-class PODFragment : Fragment() {
+class SolarFlareFragment : Fragment() {
 
-    private lateinit var bottomSheetBehaviour: BottomSheetBehavior<ConstraintLayout>
-
-    private var _binding: FragmentPhotoBinding? = null
-    private val binding: FragmentPhotoBinding
-    get() {
-        return _binding!!
-    }
+    private var _binding: FragmentSolarFlareBinding? = null
+    private val binding: FragmentSolarFlareBinding
+        get() {
+            return _binding!!
+        }
 
     private var isMain = true
 
     companion object{
-        fun newInstance(): PODFragment {
-            return PODFragment()
+        fun newInstance(): SolarFlareFragment {
+            return SolarFlareFragment()
         }
     }
 
-    private val viewModel : PODViewModel by lazy {
-        ViewModelProvider(this).get(PODViewModel::class.java)
+    private val viewModel : SolarFlareViewModel by lazy {
+        ViewModelProvider(this).get(SolarFlareViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -50,27 +46,16 @@ class PODFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel.getPODLiveData().observe(viewLifecycleOwner, Observer { renderPODData(it) })
-        _binding = FragmentPhotoBinding.inflate(inflater)
+        viewModel.getSolarFlareLiveData().observe(viewLifecycleOwner, Observer { renderSolarFlareData(it) })
+        _binding = FragmentSolarFlareBinding.inflate(inflater)
         setActionBar()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPODLiveData().observe(viewLifecycleOwner, { renderPODData(it) })
+        viewModel.getSolarFlareLiveData().observe(viewLifecycleOwner, { renderSolarFlareData(it) })
         viewModel.sendServerRequest()
-        binding.inputLayout.setEndIconOnClickListener {
-            val intent = Intent (Intent.ACTION_VIEW).apply {
-                data = Uri.parse(
-                    "https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
-            }
-            startActivity(intent)
-        }
-
-        bottomSheetBehaviour = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
-        bottomSheetBehaviour.isHideable = false
-        bottomSheetBehaviour.state = BottomSheetBehavior.STATE_COLLAPSED
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -96,21 +81,13 @@ class PODFragment : Fragment() {
             }
             R.id.app_bar_theme -> {
                 val preferences = requireActivity().getSharedPreferences(
-                        R.string.app_name.toString(), AppCompatActivity.MODE_PRIVATE
-                    )
+                    R.string.app_name.toString(), AppCompatActivity.MODE_PRIVATE
+                )
                 when (preferences.getInt("customThemeID", EARTH)) {
                     EARTH -> preferences.edit().putInt("customThemeID", MARS).apply()
                     MARS -> preferences.edit().putInt("customThemeID", EARTH).apply()
                 }
                 activity?.recreate()
-            }
-            R.id.app_bar_solar_flare -> {
-                requireActivity()
-                    .supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.container, SolarFlareFragment.newInstance())
-                    .addToBackStack("")
-                    .commit()
             }
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()
@@ -118,6 +95,21 @@ class PODFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun renderSolarFlareData (data: SolarFlareData) {
+        when (data) {
+            is SolarFlareData.Success -> {
+                binding.imageView.load(
+                    "https://www.clipartmax.com/png/full/22-220701_sun-clipart-transparent-background-sunshine-clipart.png") {
+                    error(R.drawable.ic_load_error_vector)
+                }
+                binding.classTypeView.text = data.serverResponseData.classType
+                binding.sourceLocationView.text = data.serverResponseData.sourceLocation
+            }
+            is SolarFlareData.Error -> { toast(data.error.message) }
+            is SolarFlareData.Loading -> { /*TODO "progress bar"*/ }
+        }
     }
 
     private fun setActionBar() {
@@ -154,20 +146,6 @@ class PODFragment : Fragment() {
         }
     }
 
-    private fun renderPODData (data: PODdata) {
-        when (data) {
-            is PODdata.Success -> {
-                binding.imageView.load(data.serverResponseData.url) {
-                    error(R.drawable.ic_load_error_vector)
-                }
-                binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
-                binding.includeLayout.bottomSheetDescription.text = data.serverResponseData.explanation
-            }
-            is PODdata.Error -> { toast(data.error.message) }
-            is PODdata.Loading -> { /*TODO "progress bar"*/ }
-        }
-    }
-
     private fun Fragment.toast(string: String?) {
         Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
             setGravity(Gravity.BOTTOM, 0, 250)
@@ -179,4 +157,5 @@ class PODFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
 }
