@@ -23,7 +23,7 @@
                 style="@style/CustomOutlineBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingBottom="20dp"
+                android:paddingBottom="10dp"
                 android:hint="@string/wiki_helper_text"
                 app:endIconCheckable="true"
                 app:helperText="@string/search"

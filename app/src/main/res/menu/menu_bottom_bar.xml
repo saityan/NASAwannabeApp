@@ -4,13 +4,13 @@
 
     <item
         android:id="@+id/action_api_activity"
-        android:icon="@drawable/ic_favourite_menu"
+        android:icon="@drawable/ic_view_pager_first"
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_api_bottom_activity"
-        android:icon="@drawable/ic_favourite_menu"
+        android:icon="@drawable/ic_view_pager_second"
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />
 
