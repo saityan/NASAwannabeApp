@@ -159,12 +159,15 @@ class PODFragment : Fragment() {
             is PODdata.Success -> {
                 binding.imageView.load(data.serverResponseData.url) {
                     error(R.drawable.ic_load_error_vector)
+                    placeholder(R.drawable.progress_animation)
                 }
                 binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
                 binding.includeLayout.bottomSheetDescription.text = data.serverResponseData.explanation
             }
             is PODdata.Error -> { toast(data.error.message) }
-            is PODdata.Loading -> { /*TODO "progress bar"*/ }
+            is PODdata.Loading -> {
+                binding.imageView.load(R.drawable.progress_animation)
+            }
         }
     }
 

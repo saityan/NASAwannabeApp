@@ -115,7 +115,7 @@ class SolarFlareFragment : Fragment() {
                     getString(R.string.peak_time, data.serverResponseData.peakTime)
             }
             is SolarFlareData.Error -> { toast(data.error.message) }
-            is SolarFlareData.Loading -> { /*TODO "progress bar"*/ }
+            is SolarFlareData.Loading -> {}
         }
     }
 
