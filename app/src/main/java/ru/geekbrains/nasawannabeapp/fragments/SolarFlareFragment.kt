@@ -107,10 +107,6 @@ class SolarFlareFragment : Fragment() {
     private fun renderSolarFlareData (data: SolarFlareData) {
         when (data) {
             is SolarFlareData.Success -> {
-                binding.imageView.load(
-                    "https://www.clipartmax.com/png/full/22-220701_sun-clipart-transparent-background-sunshine-clipart.png") {
-                    error(R.drawable.ic_load_error_vector)
-                }
                 binding.sourceLocationView.text =
                     getString(R.string.source_location, data.serverResponseData.sourceLocation)
                 binding.classTypeView.text =
