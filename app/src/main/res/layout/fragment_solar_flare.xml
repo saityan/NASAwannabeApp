@@ -25,16 +25,18 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/photo_of_the_day"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_no_photo_vector" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/sourceLocationView"
+                android:id="@+id/flareHeader"
+                android:paddingTop="10dp"
+                android:text="@string/solar_flare_information"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image_view"
@@ -42,14 +44,41 @@
                 android:layout_height="wrap_content"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/classTypeView"
+                android:id="@+id/sourceLocationView"
+                android:paddingTop="10dp"
+                android:text="@string/source_location"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flareHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/classTypeView"
+                android:paddingTop="10dp"
+                android:text="@string/class_type"
+                android:textAlignment="center"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sourceLocationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/peakTime"
+                android:paddingTop="10dp"
+                android:text="@string/peak_time"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/classTypeView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -89,6 +89,13 @@ class SolarFlareFragment : Fragment() {
                 }
                 activity?.recreate()
             }
+            R.id.app_bar_main -> {
+                requireActivity()
+                    .supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.container, PODFragment.newInstance())
+                    .commit()
+            }
             android.R.id.home -> {
                 BottomNavigationDrawerFragment.newInstance()
                     .show(requireActivity().supportFragmentManager, "")
@@ -104,8 +111,12 @@ class SolarFlareFragment : Fragment() {
                     "https://www.clipartmax.com/png/full/22-220701_sun-clipart-transparent-background-sunshine-clipart.png") {
                     error(R.drawable.ic_load_error_vector)
                 }
-                binding.classTypeView.text = data.serverResponseData.classType
-                binding.sourceLocationView.text = data.serverResponseData.sourceLocation
+                binding.sourceLocationView.text =
+                    getString(R.string.source_location, data.serverResponseData.sourceLocation)
+                binding.classTypeView.text =
+                    getString(R.string.class_type, data.serverResponseData.classType)
+                binding.peakTime.text =
+                    getString(R.string.peak_time, data.serverResponseData.peakTime)
             }
             is SolarFlareData.Error -> { toast(data.error.message) }
             is SolarFlareData.Loading -> { /*TODO "progress bar"*/ }

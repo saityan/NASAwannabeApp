@@ -8,7 +8,13 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/app_bar_solar_flare"
+        android:icon="@drawable/ic_sun"
+        android:title="Solar Flares"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/app_bar_main"
         android:icon="@drawable/ic_splash_screen"
-        android:title="@string/theme"
+        android:title="Main Screen"
         app:showAsAction="ifRoom" />
 </menu>

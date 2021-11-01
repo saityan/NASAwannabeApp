@@ -1,5 +1,6 @@
 package ru.geekbrains.nasawannabeapp.view.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,8 @@ import retrofit2.Response
 import ru.geekbrains.nasawannabeapp.BuildConfig
 import ru.geekbrains.nasawannabeapp.repository.RetrofitImpl
 import ru.geekbrains.nasawannabeapp.repository.SolarFlareResponseData
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SolarFlareViewModel (
     private val SolarFlareDataToObserve: MutableLiveData<SolarFlareData> = MutableLiveData(),
