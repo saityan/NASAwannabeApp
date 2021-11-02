@@ -23,23 +23,21 @@
                 android:id="@+id/button_wiki"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginEnd="8dp"
                 android:visibility="visible"
-                app:srcCompat="@drawable/ic_wikipedia"
                 app:layout_constraintBottom_toBottomOf="@+id/input_layout"
                 app:layout_constraintTop_toTopOf="@+id/input_layout"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_wikipedia" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/input_layout"
                 style="@style/CustomOutlineBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:hint="@string/wiki_helper_text"
-                app:endIconCheckable="true"
+                android:paddingBottom="10dp"
                 android:visibility="invisible"
+                app:endIconCheckable="true"
                 app:helperText="@string/search"
                 app:layout_constraintBottom_toTopOf="@+id/image_view"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -49,6 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <ru.geekbrains.nasawannabeapp.view.PODImageView
@@ -62,7 +61,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_no_photo_vector" />
-
         </androidx.constraintlayout.motion.widget.MotionLayout>
     </androidx.core.widget.NestedScrollView>
 

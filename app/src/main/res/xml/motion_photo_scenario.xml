@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="urn:oasis:names:tc:xliff:document:1.2">
     <Transition
         app:constraintSetStart="@layout/fragment_photo"
-        app:constraintSetEnd="@layout/fragment_photo_end"
-        app:duration="600">
-        <OnClick app:targetId="@+id/button_wiki">
-
-        </OnClick>
+        app:constraintSetEnd="@layout/fragment_photo_end">
+        <OnSwipe motion:touchAnchorId="@+id/input_layout"
+            motion:touchAnchorSide="right"
+            app:dragDirection="dragRight"
+            app:onTouchUp="autoCompleteToEnd" />
+    </Transition>
+    <Transition
+        app:constraintSetStart="@layout/fragment_photo_end"
+        app:constraintSetEnd="@layout/fragment_photo">
+        <OnSwipe motion:touchAnchorId="@+id/input_layout"
+            motion:touchAnchorSide="right"
+            app:dragDirection="dragRight"
+            app:onTouchUp="autoCompleteToEnd"/>
     </Transition>
 </MotionScene>
