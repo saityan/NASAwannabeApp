@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import coil.load
 import com.google.android.material.bottomappbar.BottomAppBar
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentSolarFlareBinding
