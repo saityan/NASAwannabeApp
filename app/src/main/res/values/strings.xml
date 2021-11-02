@@ -6,8 +6,11 @@
     <string name="settings">settings</string>
     <string name="search">Find out more</string>
     <string name="theme">Change theme</string>
-    <string name="source_location">Location source: %1$s</string>
-    <string name="class_type">Class type: %1$s</string>
-    <string name="peak_time">Peak time: %1$s</string>
+    <string name="source_location">%1$s</string>
+    <string name="class_type">%1$s</string>
+    <string name="peak_time">%1$s</string>
     <string name="solar_flare_information">Solar flare information</string>
+    <string name="location_source_header">Location source:</string>
+    <string name="class_type_header">Class type:</string>
+    <string name="peak_time_header">Peak time:</string>
 </resources>
