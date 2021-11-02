@@ -46,6 +46,9 @@ class SolarFlareFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        savedInstanceState?.let {
+            isMain = it.getBoolean("isMain")
+        }
         viewModel.getSolarFlareLiveData().observe(viewLifecycleOwner, Observer { renderSolarFlareData(it) })
         _binding = FragmentSolarFlareBinding.inflate(inflater)
         setActionBar()
@@ -60,7 +63,8 @@ class SolarFlareFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar, menu)
+        if (!isMain) inflater.inflate(R.menu.menu_bottom_bar_other_screen, menu)
+        else inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -129,6 +133,17 @@ class SolarFlareFragment : Fragment() {
     private fun setActionBar() {
         (context as MainActivity).setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
+        if(!isMain) {
+            binding.bottomAppBar.navigationIcon = null
+            binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_back_fab
+                )
+            )
+            binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+        }
         binding.fab.setOnClickListener {
             if (isMain) {
                 isMain = false

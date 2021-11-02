@@ -16,7 +16,8 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBinding
-import ru.geekbrains.nasawannabeapp.utils.*
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 import ru.geekbrains.nasawannabeapp.view.ApiActivity
 import ru.geekbrains.nasawannabeapp.view.ApiBottomActivity
 import ru.geekbrains.nasawannabeapp.view.MainActivity
@@ -50,6 +51,9 @@ class PODFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        savedInstanceState?.let {
+            isMain = it.getBoolean("isMain")
+        }
         viewModel.getPODLiveData().observe(viewLifecycleOwner, Observer { renderPODData(it) })
         _binding = FragmentPhotoBinding.inflate(inflater)
         setActionBar()
@@ -75,7 +79,8 @@ class PODFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar, menu)
+        if (!isMain) inflater.inflate(R.menu.menu_bottom_bar_other_screen, menu)
+        else inflater.inflate(R.menu.menu_bottom_bar, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -120,9 +125,26 @@ class PODFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (isMain) outState.putBoolean("isMain", true)
+        else outState.putBoolean("isMain", false)
+    }
+
     private fun setActionBar() {
         (context as MainActivity).setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
+        if(!isMain) {
+            binding.bottomAppBar.navigationIcon = null
+            binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+            binding.fab.setImageDrawable(
+                ContextCompat.getDrawable(
+                    requireContext(),
+                    R.drawable.ic_back_fab
+                )
+            )
+            binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
+        }
         binding.fab.setOnClickListener {
             if (isMain) {
                 isMain = false
