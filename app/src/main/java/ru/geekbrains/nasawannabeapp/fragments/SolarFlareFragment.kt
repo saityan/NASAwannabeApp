@@ -111,11 +111,18 @@ class SolarFlareFragment : Fragment() {
                     getString(R.string.source_location, data.serverResponseData.sourceLocation)
                 binding.classTypeView.text =
                     getString(R.string.class_type, data.serverResponseData.classType)
-                binding.peakTime.text =
+                binding.peakTimeView.text =
                     getString(R.string.peak_time, data.serverResponseData.peakTime)
+                binding.sourceLocationView.visibility = View.VISIBLE
+                binding.classTypeView.visibility = View.VISIBLE
+                binding.peakTimeView.visibility = View.VISIBLE
             }
             is SolarFlareData.Error -> { toast(data.error.message) }
-            is SolarFlareData.Loading -> {}
+            is SolarFlareData.Loading -> {
+                binding.sourceLocationView.visibility = View.INVISIBLE
+                binding.classTypeView.visibility = View.INVISIBLE
+                binding.peakTimeView.visibility = View.INVISIBLE
+            }
         }
     }
 
