@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_api_activity"
-        android:icon="@drawable/ic_favourite_menu"
-        android:title="@string/favorite"
-        app:showAsAction="ifRoom" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/navigation_one"
+            android:icon="@drawable/ic_archive"
+            android:title="На экран 1" />
+        <item
+            android:id="@+id/navigation_two"
+            android:icon="@drawable/ic_send"
+            android:title="На экран 2" />
 
-    <item
-        android:id="@+id/app_bar_settings"
-        android:icon="@drawable/ic_settings_menu"
-        android:title="@string/settings"
-        app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/navigation_three"
+            android:icon="@drawable/ic_search"
+            android:title="На экран 3" />
+    </group>
 </menu>

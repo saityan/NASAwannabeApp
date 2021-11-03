@@ -1,5 +1,6 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.BottomNavigationLayoutBinding
+import ru.geekbrains.nasawannabeapp.view.AnimationsActivity
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -32,11 +34,13 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.action_api_activity -> {
-                    Toast.makeText(context, "Favorite", Toast.LENGTH_SHORT).show()
+                R.id.navigation_one -> {
+                    activity?.let {
+                        startActivity(Intent(it, AnimationsActivity::class.java))
+                    }
                 }
-                R.id.app_bar_settings -> {
-                    Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show()
+                R.id.navigation_two -> {
+
                 }
             }
             true

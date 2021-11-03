@@ -25,6 +25,11 @@
             android:theme="@style/Theme.NASAwannabeApp">
         </activity>
 
+        <activity
+            android:name=".view.AnimationsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NASAwannabeApp">
+        </activity>
 
         <activity
             android:name=".view.MainActivity"
