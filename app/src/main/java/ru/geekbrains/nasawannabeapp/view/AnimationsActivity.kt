@@ -1,34 +1,37 @@
 package ru.geekbrains.nasawannabeapp.view
 
 import android.os.Bundle
-import android.transition.ArcMotion
 import android.transition.ChangeBounds
 import android.transition.TransitionManager
 import android.view.Gravity
-import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsPathTransitionsBinding
+import androidx.core.view.ViewCompat
+import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsShuffleBinding
 
 class AnimationsActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityAnimationsPathTransitionsBinding
-
-    var isRight = false
+    lateinit var binding: ActivityAnimationsShuffleBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAnimationsPathTransitionsBinding.inflate(layoutInflater)
+        binding = ActivityAnimationsShuffleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val titles: MutableList<String> = ArrayList()
+        for(i in 0..4) {
+            titles.add("Item $i")
+        }
         binding.button.setOnClickListener {
-            isRight = !isRight
-            val changeBounds = ChangeBounds()
-            changeBounds.pathMotion = ArcMotion()
-            changeBounds.duration = 2000
-            TransitionManager.beginDelayedTransition(binding.transitionsContainer, changeBounds)
-            val params = binding.button.layoutParams as FrameLayout.LayoutParams
-            if (isRight) params.gravity = Gravity.END or Gravity.BOTTOM
-            else params.gravity = Gravity.START or Gravity.TOP
-            binding.button.layoutParams = params
+            TransitionManager.beginDelayedTransition(binding.transitionsContainer, ChangeBounds())
+            binding.transitionsContainer.removeAllViews()
+            titles.shuffle()
+            for(title in titles) {
+                binding.transitionsContainer.addView(TextView(this).apply {
+                    text = title
+                    ViewCompat.setTransitionName(this, title)
+                    gravity = Gravity.CENTER_HORIZONTAL
+                })
+            }
         }
     }
 }
