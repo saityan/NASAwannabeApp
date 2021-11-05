@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import ru.geekbrains.nasawannabeapp.view.AnimationsActivityBonus
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.BottomNavigationLayoutBinding
 import ru.geekbrains.nasawannabeapp.view.AnimationsActivity
@@ -40,7 +40,9 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     }
                 }
                 R.id.navigation_two -> {
-
+                    activity?.let {
+                        startActivity(Intent(it, AnimationsActivityBonus::class.java))
+                    }
                 }
             }
             true
