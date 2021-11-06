@@ -20,6 +20,12 @@
         </activity>
 
         <activity
+            android:name=".view.AnimationsExtra"
+            android:exported="true"
+            android:theme="@style/Theme.NASAwannabeApp">
+        </activity>
+
+        <activity
             android:name=".view.ApiBottomActivity"
             android:exported="true"
             android:theme="@style/Theme.NASAwannabeApp">

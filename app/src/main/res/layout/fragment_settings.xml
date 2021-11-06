@@ -4,6 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/play_pause_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/play_pause_circle"
+        android:backgroundTint="?android:colorPrimary"
+        android:layout_gravity="center"
+        android:checked="true"
+        android:contentDescription="@null"
+        android:thumb="@null" />
+
     <LinearLayout
         android:id="@+id/secondRow"
         android:layout_width="match_parent"
