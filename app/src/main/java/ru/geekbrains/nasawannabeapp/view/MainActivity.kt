@@ -3,7 +3,7 @@ package ru.geekbrains.nasawannabeapp.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.geekbrains.nasawannabeapp.R
-import ru.geekbrains.nasawannabeapp.fragments.StartPODFragment
+import ru.geekbrains.nasawannabeapp.fragments.PODFragment
 import ru.geekbrains.nasawannabeapp.utils.EARTH
 import ru.geekbrains.nasawannabeapp.utils.MARS
 
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, StartPODFragment.newInstance())
+                .replace(R.id.container, PODFragment.newInstance())
                 .commitNow()
         }
     }

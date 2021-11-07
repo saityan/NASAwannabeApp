@@ -49,7 +49,7 @@ class StartPODFragment : Fragment() {
         viewModel.sendServerRequest()
         binding.imageView.setOnClickListener {
             val transaction = parentFragmentManager.beginTransaction()
-            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_left)
+            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right)
             transaction.replace(R.id.container, PODFragment.newInstance())
             transaction.commit()
         }

@@ -6,13 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ru.geekbrains.nasawannabeapp.view.PODImageView
-        android:id="@+id/image_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
-        android:contentDescription="@string/photo_of_the_day"
-        app:srcCompat="@drawable/ic_no_photo_vector"/>
-
+        <ru.geekbrains.nasawannabeapp.view.PODImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/photo_of_the_day"
+            app:srcCompat="@drawable/ic_no_photo_vector"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

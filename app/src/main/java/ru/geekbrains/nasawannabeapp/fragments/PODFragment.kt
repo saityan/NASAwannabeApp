@@ -80,6 +80,13 @@ class PODFragment : Fragment() {
         bottomSheetBehaviour = BottomSheetBehavior.from(binding.includeLayout.bottomSheetContainer)
         bottomSheetBehaviour.isHideable = false
         bottomSheetBehaviour.state = BottomSheetBehavior.STATE_COLLAPSED
+
+        binding.imageView.setOnClickListener {
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+            transaction.replace(R.id.container, StartPODFragment.newInstance())
+            transaction.commit()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
