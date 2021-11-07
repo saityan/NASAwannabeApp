@@ -1,5 +1,6 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoStartBinding
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
+
 
 class StartPODFragment : Fragment() {
 
@@ -58,6 +60,10 @@ class StartPODFragment : Fragment() {
     private fun renderPODData (data: PODdata) {
         when (data) {
             is PODdata.Success -> {
+                val layoutParams: ViewGroup.LayoutParams = binding.imageView.layoutParams
+                layoutParams.width = 2200
+                layoutParams.height = 2200
+                binding.imageView.layoutParams = layoutParams
                 binding.imageView.load(data.serverResponseData.url) {
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.progress_animation)
