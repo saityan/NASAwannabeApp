@@ -7,7 +7,7 @@ import android.view.animation.AnticipateOvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import ru.geekbrains.nasawannabeapp.R
-import ru.geekbrains.nasawannabeapp.databinding.*
+import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsBonusStartBinding
 
 class AnimationsActivityBonus : AppCompatActivity() {
 
@@ -30,11 +30,11 @@ class AnimationsActivityBonus : AppCompatActivity() {
                 transition.duration = 1000
 
             } else {
-                constraintSet.clone(this,R.layout.activity_animations_bonus_start)
+                constraintSet.clone(this, R.layout.activity_animations_bonus_start)
                 transition.interpolator = AnticipateOvershootInterpolator(2.0f)
                 transition.duration = 1000
             }
-            TransitionManager.beginDelayedTransition(binding.constraintContainer,transition)
+            TransitionManager.beginDelayedTransition(binding.constraintContainer, transition)
             constraintSet.applyTo(binding.constraintContainer)
         }
     }
