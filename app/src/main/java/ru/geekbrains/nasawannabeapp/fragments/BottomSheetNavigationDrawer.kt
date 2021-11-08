@@ -10,6 +10,7 @@ import ru.geekbrains.nasawannabeapp.view.AnimationsActivityBonus
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.BottomNavigationLayoutBinding
 import ru.geekbrains.nasawannabeapp.view.AnimationsActivity
+import ru.geekbrains.nasawannabeapp.view.RecyclerActivity
 
 class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
@@ -42,6 +43,11 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                 R.id.navigation_two -> {
                     activity?.let {
                         startActivity(Intent(it, AnimationsActivityBonus::class.java))
+                    }
+                }
+                R.id.navigation_three -> {
+                    activity?.let {
+                        startActivity(Intent(it, RecyclerActivity::class.java))
                     }
                 }
             }
