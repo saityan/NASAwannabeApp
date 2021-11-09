@@ -10,16 +10,16 @@ import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemMarsBinding
 
 class RecyclerActivityAdapter (
     private var clickListener: RecyclerClickListener,
-    private var data: MutableList<RecyclerData>
+    private var data: MutableList<Pair<RecyclerData, Boolean>>
 ) : RecyclerView.Adapter<ViewHolderBased>() {
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) return TYPE_HEADER
-        return if(this.data[position].planetDescription.isBlank()) TYPE_EARTH else TYPE_MARS
+        return if(this.data[position].first.planetDescription.isBlank()) TYPE_EARTH else TYPE_MARS
     }
 
     fun appendItem() {
-        this.data.add(createItem())
+        this.data.add(Pair(createItem(), false))
         notifyItemInserted(itemCount - 1)
     }
 
@@ -57,17 +57,17 @@ class RecyclerActivityAdapter (
     }
 
     inner class EarthViewHolder(view: View) : ViewHolderBased(view) {
-        override fun bind(data: RecyclerData) {
+        override fun bind(pair: Pair<RecyclerData, Boolean>) {
             ActivityRecyclerItemEarthBinding.bind(itemView).apply {
-                descriptionTextView.text = data.planetDescription
+                descriptionTextView.text = pair.first.planetDescription
                 wikiImageView.setOnClickListener {
-                    clickListener.onItemClick(data)
+                    clickListener.onItemClick(pair.first)
                 }
             }
         }
 
         override fun addItem() {
-            data.add(layoutPosition, createItem())
+            data.add(layoutPosition, Pair(createItem(), false))
             notifyItemInserted(layoutPosition)
         }
 
@@ -78,10 +78,10 @@ class RecyclerActivityAdapter (
     }
 
     inner class MarsViewHolder(view: View) : ViewHolderBased(view) {
-        override fun bind(data: RecyclerData) {
+        override fun bind(pair: Pair<RecyclerData, Boolean>) {
             ActivityRecyclerItemMarsBinding.bind(itemView).apply {
                 marsImageView.setOnClickListener {
-                    clickListener.onItemClick(data)
+                    clickListener.onItemClick(pair.first)
                 }
                 addItemImageView.setOnClickListener {
                     addItem()
@@ -89,12 +89,47 @@ class RecyclerActivityAdapter (
                 removeItemImageView.setOnClickListener {
                     removeItem()
                 }
+                moveItemUp.setOnClickListener {
+                    moveUp()
+                }
+                moveItemDown.setOnClickListener {
+                    moveDown()
+                }
+                marsTextView.setOnClickListener {
+                    toggleText()
+                }
+                marsDescriptionTextView.visibility = if (pair.second) View.VISIBLE else View.GONE
+            }
+        }
+
+        private fun toggleText() {
+            data[layoutPosition] = data[layoutPosition].let {
+                it.first to !it.second
+            }
+            notifyItemChanged(layoutPosition)
+        }
+
+        private fun moveUp() {
+            layoutPosition.takeIf{ it > 1}?.also {
+                data.removeAt(it).apply {
+                    data.add(it - 1, this)
+                }
+                notifyItemMoved(it, it - 1)
+            }
+        }
+
+        private fun moveDown() {
+            layoutPosition.takeIf{ it > 0 && it < itemCount - 1}?.also {
+                data.removeAt(it).apply {
+                    data.add(it + 1, this)
+                }
+                notifyItemMoved(it, it + 1)
             }
         }
 
         override fun addItem() {
-            data.add(layoutPosition, createItem())
-            notifyItemInserted(layoutPosition)
+            data.add(layoutPosition + 1, Pair(createItem(), false))
+            notifyItemInserted(layoutPosition + 1)
         }
 
         override fun removeItem() {
@@ -104,16 +139,16 @@ class RecyclerActivityAdapter (
     }
 
     inner class HeaderViewHolder(view: View) : ViewHolderBased(view) {
-        override fun bind(data: RecyclerData) {
+        override fun bind(pair: Pair<RecyclerData, Boolean>) {
             ActivityRecyclerItemHeaderBinding.bind(itemView).apply {
                 root.setOnClickListener {
-                    clickListener.onItemClick(data)
+                    clickListener.onItemClick(pair.first)
                 }
             }
         }
 
         override fun addItem() {
-            data.add(layoutPosition, createItem())
+            data.add(layoutPosition, Pair(createItem(), false))
             notifyItemInserted(layoutPosition)
         }
 
