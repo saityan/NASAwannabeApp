@@ -19,12 +19,14 @@ class RecyclerActivity : AppCompatActivity() {
 
         val recyclerData = listOf(
             RecyclerData("Earth", ""),
-            RecyclerData("Mars", ""),
-            RecyclerData("Mars", ""),
-            RecyclerData("Mars", ""),
+            RecyclerData("Mars", "Mars"),
+            RecyclerData("Mars", "Mars"),
+            RecyclerData("Mars", "Mars"),
             RecyclerData("Earth", ""),
             RecyclerData("Earth", ""),
-            RecyclerData("Mars", ""),
+            RecyclerData("Mars", "Mars"),
+            RecyclerData("Mars", "Mars"),
+            RecyclerData("Earth", ""),
         )
         binding.recyclerView.adapter = RecyclerActivityAdapter(
             object: RecyclerClickListener {

@@ -13,7 +13,7 @@ class RecyclerActivityAdapter (
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
-        return if(this.data[position].planetDescription.isNullOrBlank()) TYPE_MARS else TYPE_EARTH
+        return if(this.data[position].planetDescription.isNullOrBlank()) TYPE_EARTH else TYPE_MARS
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
