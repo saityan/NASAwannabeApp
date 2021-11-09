@@ -10,13 +10,20 @@ import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemMarsBinding
 
 class RecyclerActivityAdapter (
     private var clickListener: RecyclerClickListener,
-    private var data: List<RecyclerData>
+    private var data: MutableList<RecyclerData>
 ) : RecyclerView.Adapter<ViewHolderBased>() {
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) return TYPE_HEADER
         return if(this.data[position].planetDescription.isBlank()) TYPE_EARTH else TYPE_MARS
     }
+
+    fun appendItem() {
+        this.data.add(createItem())
+        notifyDataSetChanged()
+    }
+
+    private fun createItem() = RecyclerData("Mars", "The Red Planet")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderBased {
         return when (viewType) {
@@ -58,6 +65,16 @@ class RecyclerActivityAdapter (
                 }
             }
         }
+
+        override fun addItem() {
+            data.add(layoutPosition, createItem())
+            notifyDataSetChanged()
+        }
+
+        override fun removeItem() {
+            data.removeAt(layoutPosition)
+            notifyDataSetChanged()
+        }
     }
 
     inner class MarsViewHolder(view: View) : ViewHolderBased(view) {
@@ -66,7 +83,23 @@ class RecyclerActivityAdapter (
                 marsImageView.setOnClickListener {
                     clickListener.onItemClick(data)
                 }
+                addItemImageView.setOnClickListener {
+                    addItem()
+                }
+                removeItemImageView.setOnClickListener {
+                    removeItem()
+                }
             }
+        }
+
+        override fun addItem() {
+            data.add(layoutPosition, createItem())
+            notifyDataSetChanged()
+        }
+
+        override fun removeItem() {
+            data.removeAt(layoutPosition)
+            notifyDataSetChanged()
         }
     }
 
@@ -77,6 +110,16 @@ class RecyclerActivityAdapter (
                     clickListener.onItemClick(data)
                 }
             }
+        }
+
+        override fun addItem() {
+            data.add(layoutPosition, createItem())
+            notifyDataSetChanged()
+        }
+
+        override fun removeItem() {
+            data.removeAt(layoutPosition)
+            notifyDataSetChanged()
         }
     }
 

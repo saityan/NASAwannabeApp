@@ -5,4 +5,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class ViewHolderBased(view: View): RecyclerView.ViewHolder(view) {
     abstract fun bind (data: RecyclerData)
+    abstract fun addItem()
+    abstract fun removeItem()
 }

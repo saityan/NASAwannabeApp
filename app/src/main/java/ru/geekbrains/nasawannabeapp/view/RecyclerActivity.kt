@@ -27,7 +27,7 @@ class RecyclerActivity : AppCompatActivity() {
             }
         }
         recyclerData.add(0, RecyclerData("Header"))
-        binding.recyclerView.adapter = RecyclerActivityAdapter(
+        val adapter = RecyclerActivityAdapter(
             object: RecyclerClickListener {
                 override fun onItemClick(data: RecyclerData) {
                     Toast.makeText(
@@ -38,5 +38,9 @@ class RecyclerActivity : AppCompatActivity() {
                 }
             },
         recyclerData)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerActivityFAB.setOnClickListener {
+            adapter.appendItem()
+        }
     }
 }
