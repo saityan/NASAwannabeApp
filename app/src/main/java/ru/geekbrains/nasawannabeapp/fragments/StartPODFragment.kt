@@ -1,6 +1,5 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater

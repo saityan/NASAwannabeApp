@@ -17,17 +17,16 @@ class RecyclerActivity : AppCompatActivity() {
         binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val recyclerData = listOf(
-            RecyclerData("Earth", ""),
-            RecyclerData("Mars", "Mars"),
-            RecyclerData("Mars", "Mars"),
-            RecyclerData("Mars", "Mars"),
-            RecyclerData("Earth", ""),
-            RecyclerData("Earth", ""),
-            RecyclerData("Mars", "Mars"),
-            RecyclerData("Mars", "Mars"),
-            RecyclerData("Earth", ""),
-        )
+        val recyclerData : MutableList<RecyclerData> = ArrayList()
+
+        repeat(10) {
+            if (it % 2 == 0) {
+                recyclerData.add(RecyclerData("Earth"))
+            } else {
+                recyclerData.add(RecyclerData("Mars", "Mars"))
+            }
+        }
+        recyclerData.add(0, RecyclerData("Header"))
         binding.recyclerView.adapter = RecyclerActivityAdapter(
             object: RecyclerClickListener {
                 override fun onItemClick(data: RecyclerData) {

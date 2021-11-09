@@ -54,7 +54,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:background="?colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/earthImageView"
         app:layout_constraintStart_toStartOf="parent" />

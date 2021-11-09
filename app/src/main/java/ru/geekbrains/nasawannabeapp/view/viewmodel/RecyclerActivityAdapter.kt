@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemEarthBinding
+import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemHeaderBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemMarsBinding
 
 class RecyclerActivityAdapter (
@@ -13,6 +14,7 @@ class RecyclerActivityAdapter (
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
+        if (position == 0) return TYPE_HEADER
         return if(this.data[position].planetDescription.isNullOrBlank()) TYPE_EARTH else TYPE_MARS
     }
 
@@ -31,10 +33,10 @@ class RecyclerActivityAdapter (
                 MarsViewHolder(binding.root)
             }
             else -> {
-                val binding: ActivityRecyclerItemMarsBinding =
-                    ActivityRecyclerItemMarsBinding.inflate(LayoutInflater.from(parent.context),
+                val binding: ActivityRecyclerItemHeaderBinding =
+                    ActivityRecyclerItemHeaderBinding.inflate(LayoutInflater.from(parent.context),
                         parent, false)
-                MarsViewHolder(binding.root)
+                HeaderViewHolder(binding.root)
             }
         }
     }
@@ -46,6 +48,9 @@ class RecyclerActivityAdapter (
             }
             TYPE_MARS -> {
                 (holder as MarsViewHolder).bind(data[position])
+            }
+            TYPE_HEADER -> {
+                (holder as HeaderViewHolder).bind(data[position])
             }
         }
     }
@@ -75,8 +80,19 @@ class RecyclerActivityAdapter (
         }
     }
 
+    inner class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bind(data: RecyclerData) {
+            ActivityRecyclerItemHeaderBinding.bind(itemView).apply {
+                root.setOnClickListener {
+                    clickListener.onItemClick(data)
+                }
+            }
+        }
+    }
+
     companion object {
         private const val TYPE_EARTH = 0
         private const val TYPE_MARS = 1
+        private const val TYPE_HEADER = -1
     }
 }
