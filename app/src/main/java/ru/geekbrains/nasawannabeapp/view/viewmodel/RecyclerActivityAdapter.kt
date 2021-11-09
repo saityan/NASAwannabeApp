@@ -20,7 +20,7 @@ class RecyclerActivityAdapter (
 
     fun appendItem() {
         this.data.add(createItem())
-        notifyDataSetChanged()
+        notifyItemInserted(itemCount - 1)
     }
 
     private fun createItem() = RecyclerData("Mars", "The Red Planet")
@@ -68,12 +68,12 @@ class RecyclerActivityAdapter (
 
         override fun addItem() {
             data.add(layoutPosition, createItem())
-            notifyDataSetChanged()
+            notifyItemInserted(layoutPosition)
         }
 
         override fun removeItem() {
             data.removeAt(layoutPosition)
-            notifyDataSetChanged()
+            notifyItemRemoved(layoutPosition)
         }
     }
 
@@ -94,12 +94,12 @@ class RecyclerActivityAdapter (
 
         override fun addItem() {
             data.add(layoutPosition, createItem())
-            notifyDataSetChanged()
+            notifyItemInserted(layoutPosition)
         }
 
         override fun removeItem() {
             data.removeAt(layoutPosition)
-            notifyDataSetChanged()
+            notifyItemRemoved(layoutPosition)
         }
     }
 
@@ -114,12 +114,12 @@ class RecyclerActivityAdapter (
 
         override fun addItem() {
             data.add(layoutPosition, createItem())
-            notifyDataSetChanged()
+            notifyItemInserted(layoutPosition)
         }
 
         override fun removeItem() {
             data.removeAt(layoutPosition)
-            notifyDataSetChanged()
+            notifyItemRemoved(layoutPosition)
         }
     }
 
