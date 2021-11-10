@@ -11,6 +11,7 @@ import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.*
 class RecyclerActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRecyclerBinding
+    lateinit var itemTouchHelper : ItemTouchHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +34,18 @@ class RecyclerActivity : AppCompatActivity() {
                         .show()
                 }
             },
-        recyclerData)
+            object: RecyclerActivityAdapter.OnDragStartListener {
+                override fun onDragStart(viewHolder: RecyclerView.ViewHolder) {
+                    itemTouchHelper.startDrag(viewHolder)
+                }
+            },
+            recyclerData)
         binding.recyclerView.adapter = adapter
         binding.recyclerActivityFAB.setOnClickListener {
             adapter.appendItem()
         }
-        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(binding.recyclerView)
+        itemTouchHelper = ItemTouchHelper(ItemTouchHelperCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
     }
 }
 

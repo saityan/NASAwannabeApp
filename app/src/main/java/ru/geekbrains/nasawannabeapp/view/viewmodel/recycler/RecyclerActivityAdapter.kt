@@ -2,8 +2,10 @@ package ru.geekbrains.nasawannabeapp.view.viewmodel.recycler
 
 import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MotionEventCompat
 import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemEarthBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemHeaderBinding
@@ -12,6 +14,7 @@ import ru.geekbrains.nasawannabeapp.view.viewmodel.ViewHolderBased
 
 class RecyclerActivityAdapter (
     private var clickListener: RecyclerClickListener,
+    private var dragListener: OnDragStartListener,
     private var data: MutableList<Pair<RecyclerData, Boolean>>
 ) : RecyclerView.Adapter<ViewHolderBased>(), OnItemTouchHelperAdapter {
 
@@ -101,6 +104,12 @@ class RecyclerActivityAdapter (
                     toggleText()
                 }
                 marsDescriptionTextView.visibility = if (pair.second) View.VISIBLE else View.GONE
+                dragHandleImageView.setOnTouchListener { v, event ->
+                    if(MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                        dragListener.onDragStart(this@MarsViewHolder)
+                    }
+                    false
+                }
             }
         }
 
@@ -184,5 +193,9 @@ class RecyclerActivityAdapter (
     override fun onItemDismiss(position: Int) {
         data.removeAt(position)
         notifyItemRemoved(position)
+    }
+
+    interface OnDragStartListener {
+        fun onDragStart(viewHolder: RecyclerView.ViewHolder)
     }
 }

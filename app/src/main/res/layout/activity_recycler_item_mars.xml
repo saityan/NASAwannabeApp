@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:tint="@color/cardview_shadow_start_color"
+        android:tint="?colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/marsTextView"
