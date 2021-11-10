@@ -20,7 +20,7 @@ class RecyclerActivity : AppCompatActivity() {
 
         val recyclerData : MutableList<Pair<RecyclerData, Boolean>> = ArrayList()
 
-        repeat(10) {
+        repeat(5) {
                 recyclerData.add(Pair(RecyclerData("Mars", "Mars"), false))
         }
         recyclerData.add(0, Pair(RecyclerData("Header"), false))

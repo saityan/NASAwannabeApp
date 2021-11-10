@@ -19,8 +19,9 @@ class RecyclerActivityAdapter (
 ) : RecyclerView.Adapter<ViewHolderBased>(), OnItemTouchHelperAdapter {
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) return TYPE_HEADER
-        return if(this.data[position].first.planetDescription.isBlank()) TYPE_EARTH else TYPE_MARS
+        return if (position == 0) TYPE_HEADER else
+            if (this.data[position].first.planetName == "Mars")
+                TYPE_MARS else TYPE_EARTH
     }
 
     fun appendItem() {
@@ -104,7 +105,7 @@ class RecyclerActivityAdapter (
                     toggleText()
                 }
                 marsDescriptionTextView.visibility = if (pair.second) View.VISIBLE else View.GONE
-                dragHandleImageView.setOnTouchListener { v, event ->
+                dragHandleImageView.setOnTouchListener { _, event ->
                     if(MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
                         dragListener.onDragStart(this@MarsViewHolder)
                     }
@@ -185,7 +186,17 @@ class RecyclerActivityAdapter (
 
     override fun onItemMove(startPosition: Int, endPosition: Int) {
         data.removeAt(startPosition).apply {
-            data.add(if(endPosition > startPosition) endPosition - 1 else endPosition, this)
+            when {
+                endPosition > startPosition -> {
+                    data.add(endPosition - 1, this)
+                }
+                endPosition != 0 -> {
+                    data.add(endPosition, this)
+                }
+                else -> {
+                    data.add(endPosition + 1, this)
+                }
+            }
         }
         notifyItemMoved(startPosition, endPosition)
     }
