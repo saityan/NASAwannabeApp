@@ -1,4 +1,4 @@
-package ru.geekbrains.nasawannabeapp.view.viewmodel
+package ru.geekbrains.nasawannabeapp.view.viewmodel.recycler
 
 data class RecyclerData(
     val planetName: String = "",

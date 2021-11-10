@@ -1,5 +1,6 @@
-package ru.geekbrains.nasawannabeapp.view.viewmodel
+package ru.geekbrains.nasawannabeapp.view.viewmodel.recycler
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemEarthBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemHeaderBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemMarsBinding
+import ru.geekbrains.nasawannabeapp.view.viewmodel.ViewHolderBased
 
 class RecyclerActivityAdapter (
     private var clickListener: RecyclerClickListener,
     private var data: MutableList<Pair<RecyclerData, Boolean>>
-) : RecyclerView.Adapter<ViewHolderBased>() {
+) : RecyclerView.Adapter<ViewHolderBased>(), OnItemTouchHelperAdapter {
 
     override fun getItemViewType(position: Int): Int {
         if (position == 0) return TYPE_HEADER
@@ -77,7 +79,7 @@ class RecyclerActivityAdapter (
         }
     }
 
-    inner class MarsViewHolder(view: View) : ViewHolderBased(view) {
+    inner class MarsViewHolder(view: View) : ViewHolderBased(view), OnItemTouchHelperViewHolder {
         override fun bind(pair: Pair<RecyclerData, Boolean>) {
             ActivityRecyclerItemMarsBinding.bind(itemView).apply {
                 marsImageView.setOnClickListener {
@@ -136,6 +138,14 @@ class RecyclerActivityAdapter (
             data.removeAt(layoutPosition)
             notifyItemRemoved(layoutPosition)
         }
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
     }
 
     inner class HeaderViewHolder(view: View) : ViewHolderBased(view) {
@@ -162,5 +172,17 @@ class RecyclerActivityAdapter (
         private const val TYPE_EARTH = 0
         private const val TYPE_MARS = 1
         private const val TYPE_HEADER = -1
+    }
+
+    override fun onItemMove(startPosition: Int, endPosition: Int) {
+        data.removeAt(startPosition).apply {
+            data.add(if(endPosition > startPosition) endPosition - 1 else endPosition, this)
+        }
+        notifyItemMoved(startPosition, endPosition)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        data.removeAt(position)
+        notifyItemRemoved(position)
     }
 }
