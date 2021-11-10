@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemEarthBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemHeaderBinding
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerItemMarsBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.HEADER
+import ru.geekbrains.nasawannabeapp.utils.MARS
 import ru.geekbrains.nasawannabeapp.view.viewmodel.ViewHolderBased
 
 class RecyclerActivityAdapter (
@@ -19,9 +22,9 @@ class RecyclerActivityAdapter (
 ) : RecyclerView.Adapter<ViewHolderBased>(), OnItemTouchHelperAdapter {
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) TYPE_HEADER else
+        return if (position == 0) HEADER else
             if (this.data[position].first.planetName == "Mars")
-                TYPE_MARS else TYPE_EARTH
+                MARS else EARTH
     }
 
     fun appendItem() {
@@ -33,13 +36,13 @@ class RecyclerActivityAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderBased {
         return when (viewType) {
-            TYPE_EARTH -> {
+            EARTH -> {
                 val binding: ActivityRecyclerItemEarthBinding =
                     ActivityRecyclerItemEarthBinding.inflate(LayoutInflater.from(parent.context),
                         parent, false)
                 EarthViewHolder(binding.root)
             }
-            TYPE_MARS -> {
+            MARS -> {
                 val binding: ActivityRecyclerItemMarsBinding =
                     ActivityRecyclerItemMarsBinding.inflate(LayoutInflater.from(parent.context),
                         parent, false)
@@ -176,12 +179,6 @@ class RecyclerActivityAdapter (
             data.removeAt(layoutPosition)
             notifyItemRemoved(layoutPosition)
         }
-    }
-
-    companion object {
-        private const val TYPE_EARTH = 0
-        private const val TYPE_MARS = 1
-        private const val TYPE_HEADER = -1
     }
 
     override fun onItemMove(startPosition: Int, endPosition: Int) {
