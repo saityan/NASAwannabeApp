@@ -22,9 +22,11 @@ class RecyclerActivityAdapter (
 ) : RecyclerView.Adapter<ViewHolderBased>(), OnItemTouchHelperAdapter {
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == 0) HEADER else
-            if (this.data[position].first.planetName == "Mars")
-                MARS else EARTH
+        return when {
+            position == 0 -> HEADER
+            this.data[position].first.planetName == "Mars" -> MARS
+            else -> EARTH
+        }
     }
 
     fun appendItem() {
@@ -65,7 +67,7 @@ class RecyclerActivityAdapter (
         return data.size
     }
 
-    inner class EarthViewHolder(view: View) : ViewHolderBased(view) {
+    inner class EarthViewHolder(view: View) : ViewHolderBased(view), OnItemTouchHelperViewHolder {
         override fun bind(pair: Pair<RecyclerData, Boolean>) {
             ActivityRecyclerItemEarthBinding.bind(itemView).apply {
                 descriptionTextView.text = pair.first.planetDescription
@@ -73,6 +75,14 @@ class RecyclerActivityAdapter (
                     clickListener.onItemClick(pair.first)
                 }
             }
+        }
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.GREEN)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
         }
 
         override fun addItem() {
@@ -169,16 +179,8 @@ class RecyclerActivityAdapter (
                 }
             }
         }
-
-        override fun addItem() {
-            data.add(layoutPosition, Pair(createItem(), false))
-            notifyItemInserted(layoutPosition)
-        }
-
-        override fun removeItem() {
-            data.removeAt(layoutPosition)
-            notifyItemRemoved(layoutPosition)
-        }
+        override fun addItem() {}
+        override fun removeItem() {}
     }
 
     override fun onItemMove(startPosition: Int, endPosition: Int) {

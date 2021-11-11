@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Mars – fourth by distance from Sun and seventh in size planet of the Solar system. It is named after Mars – Roman god of war, who corresponds to Ares from Ancient Greece. Sometimes Mars is called «the red planet» due to the reddish color of it's surface – an effect of maghemite (an iron oxid)."
+        android:text="Mars – fourth by distance from Sun and seventh by size planet of the Solar system. It is named after Mars – Roman god of war, who corresponds to Ares from Ancient Greece. Sometimes Mars is called «the red planet» due to the reddish color of it's surface – an effect of maghemite (an iron oxid)."
         android:textColor="#000"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"

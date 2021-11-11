@@ -1,6 +1,7 @@
 package ru.geekbrains.nasawannabeapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -20,10 +21,12 @@ class RecyclerActivity : AppCompatActivity() {
 
         val recyclerData : MutableList<Pair<RecyclerData, Boolean>> = ArrayList()
 
-        repeat(5) {
+        repeat(3) {
                 recyclerData.add(Pair(RecyclerData("Mars", "Mars"), false))
         }
         recyclerData.add(0, Pair(RecyclerData("Header"), false))
+        //recyclerData.add(1, Pair(RecyclerData("Earth", "Our planet"), false))
+
         val adapter = RecyclerActivityAdapter(
             object: RecyclerClickListener {
                 override fun onItemClick(data: RecyclerData) {
@@ -64,6 +67,7 @@ class ItemTouchHelperCallback(private val adapter: RecyclerActivityAdapter) :
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
+        if (viewHolder.layoutPosition == 0) return 0
         val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
         return makeMovementFlags(
@@ -77,8 +81,10 @@ class ItemTouchHelperCallback(private val adapter: RecyclerActivityAdapter) :
         source: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
     ): Boolean {
-        adapter.onItemMove(source.adapterPosition, target.adapterPosition)
-        return true
+        return if (target.layoutPosition != 0) {
+            adapter.onItemMove(source.adapterPosition, target.adapterPosition)
+            true
+        } else false
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, i: Int) {
