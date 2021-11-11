@@ -187,7 +187,7 @@ class RecyclerActivityAdapter (
         data.removeAt(startPosition).apply {
             when {
                 endPosition > startPosition -> {
-                    data.add(endPosition - 1, this)
+                    data.add(endPosition, this)
                 }
                 endPosition != 0 -> {
                     data.add(endPosition, this)

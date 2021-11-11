@@ -1,7 +1,6 @@
 package ru.geekbrains.nasawannabeapp.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -25,7 +24,7 @@ class RecyclerActivity : AppCompatActivity() {
                 recyclerData.add(Pair(RecyclerData("Mars", "Mars"), false))
         }
         recyclerData.add(0, Pair(RecyclerData("Header"), false))
-        //recyclerData.add(1, Pair(RecyclerData("Earth", "Our planet"), false))
+        recyclerData.add(3, Pair(RecyclerData("Earth", "Our planet"), false))
 
         val adapter = RecyclerActivityAdapter(
             object: RecyclerClickListener {
