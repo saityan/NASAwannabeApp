@@ -11,22 +11,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import ru.geekbrains.nasawannabeapp.R
-import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoStartBinding
+import ru.geekbrains.nasawannabeapp.databinding.FragmentPhotoBigBinding
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODViewModel
 import ru.geekbrains.nasawannabeapp.view.viewmodel.PODdata
 
 
-class StartPODFragment : Fragment() {
+class BigPODFragment : Fragment() {
 
-    private var _binding: FragmentPhotoStartBinding? = null
-    private val binding: FragmentPhotoStartBinding
+    private var _binding: FragmentPhotoBigBinding? = null
+    private val binding: FragmentPhotoBigBinding
         get() {
             return _binding!!
     }
 
     companion object{
-        fun newInstance(): StartPODFragment {
-            return StartPODFragment()
+        fun newInstance(): BigPODFragment {
+            return BigPODFragment()
         }
     }
 
@@ -40,7 +40,7 @@ class StartPODFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewModel.getPODLiveData().observe(viewLifecycleOwner, Observer { renderPODData(it) })
-        _binding = FragmentPhotoStartBinding.inflate(inflater)
+        _binding = FragmentPhotoBigBinding.inflate(inflater)
         return binding.root
     }
 
