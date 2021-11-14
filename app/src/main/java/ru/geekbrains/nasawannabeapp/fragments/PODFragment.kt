@@ -1,8 +1,12 @@
 package ru.geekbrains.nasawannabeapp.fragments
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.BulletSpan
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -191,7 +195,17 @@ class PODFragment : Fragment() {
                     placeholder(R.drawable.progress_animation)
                 }
                 binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
-                binding.includeLayout.bottomSheetDescription.text = data.serverResponseData.explanation
+                data.serverResponseData.explanation?.let {
+                    binding.includeLayout.bottomSheetDescription.text = it
+                    binding.includeLayout.bottomSheetDescription.typeface =
+                        Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
+                    val spannable = SpannableStringBuilder("My text \nbullet one \nbullet two")
+                    spannable.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
+                    9, 18, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                    spannable.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
+                        21, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                    binding.includeLayout.bottomSheetDescription.text = spannable
+                }
             }
             is PODdata.Error -> { toast(data.error.message) }
             is PODdata.Loading -> {
