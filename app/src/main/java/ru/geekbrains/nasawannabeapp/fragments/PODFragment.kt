@@ -3,10 +3,13 @@ package ru.geekbrains.nasawannabeapp.fragments
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.BulletSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.TypefaceSpan
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -199,11 +202,17 @@ class PODFragment : Fragment() {
                     binding.includeLayout.bottomSheetDescription.text = it
                     binding.includeLayout.bottomSheetDescription.typeface =
                         Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
-                    val spannable = SpannableStringBuilder("My text \nbullet one \nbullet two")
-                    spannable.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
-                    9, 18, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
-                    spannable.setSpan(BulletSpan(20, resources.getColor(R.color.colorAccent)),
-                        21, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                    val spannable = SpannableStringBuilder(it)
+                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorAccent)),
+                    0, 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimary)),
+                        3, 19, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimaryVariant)),
+                        19, 40, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        spannable.setSpan(TypefaceSpan(resources.getFont(R.font.amarante)),
+                            20, 40, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                    }
                     binding.includeLayout.bottomSheetDescription.text = spannable
                 }
             }
