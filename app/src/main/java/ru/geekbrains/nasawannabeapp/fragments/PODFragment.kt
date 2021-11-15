@@ -7,10 +7,10 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
-import android.text.style.BulletSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.TypefaceSpan
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -202,11 +202,18 @@ class PODFragment : Fragment() {
                     binding.includeLayout.bottomSheetDescription.text = it
                     binding.includeLayout.bottomSheetDescription.typeface =
                         Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
-                    val spannable = SpannableStringBuilder(it)
+                    val spannableStart = SpannableStringBuilder(it)
+                    binding.includeLayout.bottomSheetDescription.setText(spannableStart,
+                        TextView.BufferType.EDITABLE)
+                    val spannable = binding.includeLayout.bottomSheetDescription.text as SpannableStringBuilder
+                    val start = 1
+                    val end = 3
                     spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorAccent)),
-                    0, 3, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                        0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                    spannable.insert(end, "x")
+                    spannable.insert(start, "x")
                     spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimary)),
-                        3, 19, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+                        3, 19, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
                     spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimaryVariant)),
                         19, 40, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
