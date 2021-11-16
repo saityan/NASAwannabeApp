@@ -21,6 +21,10 @@
         <item name="bottomNavigationStyle">@style/customBottomNavigationStyle</item>
     </style>
 
+    <style name="Theme.NASAwannabeApp.LoadingTheme">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
     <style name="Theme.NASAwannabeApp.Auxiliary" parent="Theme.NASAwannabeApp">
         <item name="colorPrimary">@color/colorPrimaryAuxiliary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkAuxiliary</item>
