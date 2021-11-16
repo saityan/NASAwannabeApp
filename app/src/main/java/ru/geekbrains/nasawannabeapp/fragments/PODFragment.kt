@@ -198,58 +198,6 @@ class PODFragment : Fragment() {
                 binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
                 data.serverResponseData.explanation?.let {
                     val spannable = SpannableStringBuilder(it)
-                    var index = spannable.indexOf(" ")
-                    val list: MutableList<Int> = mutableListOf()
-                    while (index >= 0) {
-                        list.add(index)
-                        index = spannable.indexOf(" ", index + 1)
-                    }
-                    var start = 0
-                    var colors = listOf(resources.getColor(R.color.black))
-                    val theme = requireActivity().getSharedPreferences(R.string.app_name.toString(),
-                        AppCompatActivity.MODE_PRIVATE
-                    ).getInt("customThemeID", EARTH)
-                    list.forEach {
-                        when (theme) {
-                            0 -> {
-                                colors = listOf(
-                                    resources.getColor(R.color.colorPrimary),
-                                    resources.getColor(R.color.colorPrimaryDark),
-                                    resources.getColor(R.color.colorPrimaryVariant),
-                                    resources.getColor(R.color.colorOnPrimary),
-                                    resources.getColor(R.color.colorOnSecondary),
-                                    resources.getColor(R.color.colorAccent),
-                                    resources.getColor(R.color.colorSurface)
-                            )}
-                            1 -> {
-                                colors = listOf(
-                                    resources.getColor(R.color.colorPrimaryAuxiliary),
-                                    resources.getColor(R.color.colorPrimaryDarkAuxiliary),
-                                    resources.getColor(R.color.colorPrimaryVariantAuxiliary),
-                                    resources.getColor(R.color.colorOnPrimaryAuxiliary),
-                                    resources.getColor(R.color.colorOnSecondaryAuxiliary),
-                                    resources.getColor(R.color.colorAccentSecondary),
-                                    resources.getColor(R.color.colorSurfaceAuxiliary)
-                            )}
-                        }
-                        spannable.setSpan(
-                            ForegroundColorSpan(colors.random()),
-                            start, it, Spannable.SPAN_INCLUSIVE_INCLUSIVE
-                        )
-                        spannable.setSpan(
-                            BackgroundColorSpan(colors.random()),
-                            start, it, Spannable.SPAN_INCLUSIVE_INCLUSIVE
-                        )
-                        start = it
-                    }
-                    spannable.setSpan(
-                        ForegroundColorSpan(colors.random()),
-                        start, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE
-                    )
-                    spannable.setSpan(
-                        BackgroundColorSpan(colors.random()),
-                        start, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE
-                    )
                     binding.includeLayout.bottomSheetDescription.typeface =
                         Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
                     binding.includeLayout.bottomSheetDescription.text = spannable
