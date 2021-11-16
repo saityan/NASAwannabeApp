@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
+import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.*
@@ -236,8 +237,20 @@ class PODFragment : Fragment() {
                             ForegroundColorSpan(colors.random()),
                             start, it, Spannable.SPAN_INCLUSIVE_INCLUSIVE
                         )
+                        spannable.setSpan(
+                            BackgroundColorSpan(colors.random()),
+                            start, it, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                        )
                         start = it
                     }
+                    spannable.setSpan(
+                        ForegroundColorSpan(colors.random()),
+                        start, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                    )
+                    spannable.setSpan(
+                        BackgroundColorSpan(colors.random()),
+                        start, spannable.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                    )
                     binding.includeLayout.bottomSheetDescription.typeface =
                         Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
                     binding.includeLayout.bottomSheetDescription.text = spannable
