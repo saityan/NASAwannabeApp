@@ -3,14 +3,12 @@ package ru.geekbrains.nasawannabeapp.fragments
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
-import android.text.style.TypefaceSpan
+import android.util.Log
 import android.view.*
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +48,7 @@ class PODFragment : Fragment() {
     }
 
     private val viewModel : PODViewModel by lazy {
-        ViewModelProvider(this).get(PODViewModel::class.java)
+        ViewModelProvider(this)[PODViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -199,27 +197,49 @@ class PODFragment : Fragment() {
                 }
                 binding.includeLayout.bottomSheetDescriptionHeader.text = data.serverResponseData.title
                 data.serverResponseData.explanation?.let {
-                    binding.includeLayout.bottomSheetDescription.text = it
+                    val spannable = SpannableStringBuilder(it)
+                    var index = spannable.indexOf(" ")
+                    val list: MutableList<Int> = mutableListOf()
+                    while (index >= 0) {
+                        list.add(index)
+                        index = spannable.indexOf(" ", index + 1)
+                    }
+                    var start = 0
+                    var colors = listOf(resources.getColor(R.color.black))
+                    val theme = requireActivity().getSharedPreferences(R.string.app_name.toString(),
+                        AppCompatActivity.MODE_PRIVATE
+                    ).getInt("customThemeID", EARTH)
+                    list.forEach {
+                        when (theme) {
+                            0 -> {
+                                colors = listOf(
+                                    resources.getColor(R.color.colorPrimary),
+                                    resources.getColor(R.color.colorPrimaryDark),
+                                    resources.getColor(R.color.colorPrimaryVariant),
+                                    resources.getColor(R.color.colorOnPrimary),
+                                    resources.getColor(R.color.colorOnSecondary),
+                                    resources.getColor(R.color.colorAccent),
+                                    resources.getColor(R.color.colorSurface)
+                            )}
+                            1 -> {
+                                colors = listOf(
+                                    resources.getColor(R.color.colorPrimaryAuxiliary),
+                                    resources.getColor(R.color.colorPrimaryDarkAuxiliary),
+                                    resources.getColor(R.color.colorPrimaryVariantAuxiliary),
+                                    resources.getColor(R.color.colorOnPrimaryAuxiliary),
+                                    resources.getColor(R.color.colorOnSecondaryAuxiliary),
+                                    resources.getColor(R.color.colorAccentSecondary),
+                                    resources.getColor(R.color.colorSurfaceAuxiliary)
+                            )}
+                        }
+                        spannable.setSpan(
+                            ForegroundColorSpan(colors.random()),
+                            start, it, Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                        )
+                        start = it
+                    }
                     binding.includeLayout.bottomSheetDescription.typeface =
                         Typeface.createFromAsset(requireActivity().assets, "Medieval.ttf")
-                    val spannableStart = SpannableStringBuilder(it)
-                    binding.includeLayout.bottomSheetDescription.setText(spannableStart,
-                        TextView.BufferType.EDITABLE)
-                    val spannable = binding.includeLayout.bottomSheetDescription.text as SpannableStringBuilder
-                    val start = 1
-                    val end = 3
-                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorAccent)),
-                        0, 3, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
-                    spannable.insert(end, "x")
-                    spannable.insert(start, "x")
-                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimary)),
-                        3, 19, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
-                    spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.colorPrimaryVariant)),
-                        19, 40, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        spannable.setSpan(TypefaceSpan(resources.getFont(R.font.amarante)),
-                            20, 40, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-                    }
                     binding.includeLayout.bottomSheetDescription.text = spannable
                 }
             }
