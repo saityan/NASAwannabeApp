@@ -6,7 +6,10 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsFabBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 
 class AnimationsActivity : AppCompatActivity() {
 
@@ -14,6 +17,10 @@ class AnimationsActivity : AppCompatActivity() {
     lateinit var binding: ActivityAnimationsFabBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
         binding = ActivityAnimationsFabBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setFAB()
@@ -119,5 +126,10 @@ class AnimationsActivity : AppCompatActivity() {
                     binding.transparentBackground.isClickable = true
                 }
             })
+    }
+
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
     }
 }

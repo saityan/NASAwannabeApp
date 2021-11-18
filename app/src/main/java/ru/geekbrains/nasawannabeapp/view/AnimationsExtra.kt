@@ -10,12 +10,20 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.*
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsExplodeBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 
 class AnimationsExtra : AppCompatActivity() {
     lateinit var binding: ActivityAnimationsExplodeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
+
         binding = ActivityAnimationsExplodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.recyclerView.adapter = Adapter()
@@ -61,6 +69,11 @@ class AnimationsExtra : AppCompatActivity() {
         override fun getItemCount(): Int {
             return 32
         }
+    }
+
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view)

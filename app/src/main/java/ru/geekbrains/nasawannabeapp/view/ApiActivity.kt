@@ -13,6 +13,12 @@ class ApiActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
+
         binding = ActivityApiBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
@@ -23,5 +29,10 @@ class ApiActivity : AppCompatActivity() {
             R.layout.activity_api_tablelayout_mars, null)
         binding.tabLayout.getTabAt(SYSTEM)?.customView = layoutInflater.inflate(
             R.layout.activity_api_tablelayout_system, null)
+    }
+
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
     }
 }

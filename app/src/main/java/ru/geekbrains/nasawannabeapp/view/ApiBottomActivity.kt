@@ -16,6 +16,12 @@ class ApiBottomActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
+
         binding = ActivityApiBottomBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.bottomNavigationView.setOnItemSelectedListener {
@@ -55,5 +61,10 @@ class ApiBottomActivity : AppCompatActivity() {
                 tooltipText = "This is Mars"
             }
         }
+    }
+
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
     }
 }

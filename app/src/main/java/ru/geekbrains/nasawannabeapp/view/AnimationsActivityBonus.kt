@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivityAnimationsBonusStartBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 
 class AnimationsActivityBonus : AppCompatActivity() {
 
@@ -16,6 +18,11 @@ class AnimationsActivityBonus : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
 
         binding = ActivityAnimationsBonusStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,5 +44,10 @@ class AnimationsActivityBonus : AppCompatActivity() {
             TransitionManager.beginDelayedTransition(binding.constraintContainer, transition)
             constraintSet.applyTo(binding.constraintContainer)
         }
+    }
+
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
     }
 }

@@ -5,7 +5,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerBinding
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.*
 
 class RecyclerActivity : AppCompatActivity() {
@@ -13,8 +16,19 @@ class RecyclerActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecyclerBinding
     lateinit var itemTouchHelper : ItemTouchHelper
 
+    private fun getCustomTheme() : Int {
+        return getSharedPreferences(R.string.app_name.toString(), MODE_PRIVATE)
+            .getInt("customThemeID", EARTH)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        when (getCustomTheme()) {
+            EARTH -> setTheme(R.style.Theme_NASAwannabeApp)
+            MARS -> setTheme(R.style.Theme_NASAwannabeApp_Auxiliary)
+        }
+
         binding = ActivityRecyclerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
