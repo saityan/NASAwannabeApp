@@ -50,14 +50,19 @@
         </activity>
 
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.SplashActivity"
             android:exported="true"
-            android:theme="@style/Theme.NASAwannabeApp.LoadingTheme">
+            android:theme="@style/Theme.NASAwannabeApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".view.MainActivity"
+            android:exported="true">
         </activity>
 
     </application>
