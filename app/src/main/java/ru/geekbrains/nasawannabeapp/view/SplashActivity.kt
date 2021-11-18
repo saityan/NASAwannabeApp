@@ -1,10 +1,10 @@
 package ru.geekbrains.nasawannabeapp.view
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
-import android.view.animation.LinearInterpolator
+import android.view.animation.BounceInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivitySplashBinding
@@ -12,7 +12,6 @@ import ru.geekbrains.nasawannabeapp.utils.EARTH
 import ru.geekbrains.nasawannabeapp.utils.MARS
 
 class SplashActivity : AppCompatActivity() {
-    lateinit var handler: Handler
     lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,17 +25,23 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.imageView.animate().rotationBy(1000f).setInterpolator(LinearInterpolator()).duration = 3000
-        handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }, 3000)
-    }
+        binding.imageView.animate()
+            .rotationBy(480f)
+            .setInterpolator(BounceInterpolator())
+            .setDuration(3000)
+            .setListener(object : Animator.AnimatorListener {
 
-    override fun onDestroy() {
-        super.onDestroy()
-        handler.removeCallbacksAndMessages(null)
+                override fun onAnimationEnd(animation: Animator?) {
+                    startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                    finish()
+                }
+
+                override fun onAnimationStart(animation: Animator?) {}
+
+                override fun onAnimationCancel(animation: Animator?) {}
+
+                override fun onAnimationRepeat(animation: Animator?) {}
+            })
     }
 
     private fun getCustomTheme() : Int {
