@@ -23,7 +23,7 @@ android {
         it.buildConfigField "String", "NASA_API_KEY", nasaApiKey
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
