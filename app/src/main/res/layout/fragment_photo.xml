@@ -92,6 +92,5 @@
             app:layout_anchor="@id/bottom_app_bar"
             app:srcCompat="@drawable/ic_plus_fab"
             app:tint="#FFFFFF" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
