@@ -9,7 +9,10 @@ import ru.geekbrains.nasawannabeapp.R
 import ru.geekbrains.nasawannabeapp.databinding.ActivityRecyclerBinding
 import ru.geekbrains.nasawannabeapp.utils.EARTH
 import ru.geekbrains.nasawannabeapp.utils.MARS
-import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.*
+import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.OnItemTouchHelperViewHolder
+import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.RecyclerActivityAdapter
+import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.RecyclerClickListener
+import ru.geekbrains.nasawannabeapp.view.viewmodel.recycler.RecyclerData
 
 class RecyclerActivity : AppCompatActivity() {
 

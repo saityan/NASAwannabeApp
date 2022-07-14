@@ -185,5 +185,4 @@ class SolarFlareFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

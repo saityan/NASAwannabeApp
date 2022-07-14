@@ -3,7 +3,6 @@ package ru.geekbrains.nasawannabeapp.view
 import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.animation.BounceInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import ru.geekbrains.nasawannabeapp.R

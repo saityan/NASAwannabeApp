@@ -9,7 +9,8 @@ import ru.geekbrains.nasawannabeapp.databinding.ActivityApiBottomBinding
 import ru.geekbrains.nasawannabeapp.fragments.EarthFragment
 import ru.geekbrains.nasawannabeapp.fragments.MarsFragment
 import ru.geekbrains.nasawannabeapp.fragments.SystemFragment
-import ru.geekbrains.nasawannabeapp.utils.*
+import ru.geekbrains.nasawannabeapp.utils.EARTH
+import ru.geekbrains.nasawannabeapp.utils.MARS
 
 class ApiBottomActivity : AppCompatActivity() {
     lateinit var binding : ActivityApiBottomBinding
